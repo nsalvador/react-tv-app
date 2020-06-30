@@ -1,0 +1,18 @@
+<form onSubmit={onSubmit}>
+						<input
+							placeholder="Start a Search"
+							value={show}
+							onChange={onChange}
+						/>
+						<button disabled={show === ''}>Search</button>
+					</form>
+
+          	{error ? (
+					<p>{error.message}</p>
+				) : (
+					<ol>
+						{shows.map((show) => (
+							<li key={show.id}>{show.seriesName}</li>
+						))}
+					</ol>
+				)}

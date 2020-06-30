@@ -1,41 +1,26 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 import Layout from '../components/layout';
+import SearchForm from '../components/SearchForm';
+import SearchList from '../components/SearchList';
 
 const SearchPage = () => {
-	const [show, setShow] = useState('');
 	const [shows, setShows] = useState([]);
+	const [error, setError] = useState(null);
 
-	const onSubmit = async (e) => {
-		e.preventDefault();
-		const response = await axios({
-			url: 'https://vue-tv-api.herokuapp.com/shows/search',
-			method: 'post',
-			data: { show },
-		});
-		setShows([...response.data]);
-		setShow('');
+	const showsHandler = (shows) => {
+		setShows(shows);
 	};
 
-	const onChange = (e) => setShow(e.target.value);
+	const errorHandler = (error) => {
+		setError(error);
+	};
 
 	return (
 		<div>
 			<Layout>
-				<form onSubmit={onSubmit}>
-					<input
-						placeholder="Start a Search"
-						value={show}
-						onChange={onChange}
-					/>
-					<button disabled={show === ''}>Search</button>
-				</form>
-				<ol>
-					{shows.map((show) => (
-						<li key={show.id}>{show.seriesName}</li>
-					))}
-				</ol>
+				<SearchForm shows={showsHandler} error={errorHandler} />
+				<SearchList shows={shows} error={error} />
 			</Layout>
 		</div>
 	);
