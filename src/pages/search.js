@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import SearchForm from '../components/SearchForm';
 import SearchList from '../components/SearchList';
+import SearchContext from '../context/search';
+import SearchReducer from '../reducers/search';
+import ErrorReducer from '../reducers/error';
 
 const SearchPage = () => {
-	const [shows, setShows] = useState([]);
-	const [error, setError] = useState(null);
-
-	const showsHandler = (shows) => {
-		setShows(shows);
-	};
-
-	const errorHandler = (error) => {
-		setError(error);
-	};
+	const [shows, dispatchSearch] = useReducer(SearchReducer, []);
+	const [error, dispatchError] = useReducer(ErrorReducer, '');
 
 	return (
 		<div>
 			<Layout>
-				<SearchForm shows={showsHandler} error={errorHandler} />
-				<SearchList shows={shows} error={error} />
+				<SearchContext.Provider
+					value={{ error, shows, dispatchSearch, dispatchError }}
+				>
+					<SearchForm />
+					<SearchList />
+				</SearchContext.Provider>
 			</Layout>
 		</div>
 	);

@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import SearchContext from '../context/search';
+import DashboardContext from '../context/dashboard';
 
-const SearchList = ({ shows, error }) => {
+const SearchList = () => {
+	const { error, shows } = useContext(SearchContext);
+	const { dispatch } = useContext(DashboardContext);
+
 	return (
 		<div>
 			{error ? (
-				<p>{error.message}</p>
+				<p>{error}</p>
+			) : shows.length === 0 ? (
+				<p>No results</p>
 			) : (
 				<ol>
 					{shows.map((show) => (
-						<li key={show.id}>{show.seriesName}</li>
+						<li key={show.id}>
+							{show.seriesName}
+							<button onClick={() => dispatch({ type: 'ADD_SHOW', show })}>
+								+
+							</button>
+						</li>
 					))}
 				</ol>
 			)}
