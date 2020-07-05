@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => (
 	<header>
-		<h1>React TV App</h1>
+		<h2>React TV App</h2>
 		<ul>
 			<li>
 				<NavLink to="/dashboard" activeClassName="is-active">

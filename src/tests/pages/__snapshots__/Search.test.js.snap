@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render SearchPage correctly 1`] = `
+<div>
+  <Layout>
+    <ContextProvider
+      value={
+        Object {
+          "dispatchError": [Function],
+          "dispatchSearch": [Function],
+          "error": "",
+          "shows": Array [],
+        }
+      }
+    >
+      <SearchForm />
+      <SearchList />
+    </ContextProvider>
+  </Layout>
+</div>
+`;

@@ -3,7 +3,7 @@
 exports[`should render Footer correctly 1`] = `
 <footer>
   <p>
-    Created by Nigel Salvador, © 
+    Created by Nigel D. Salvador, © 
     2020
   </p>
 </footer>

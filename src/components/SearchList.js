@@ -10,8 +10,6 @@ const SearchList = () => {
 		<div>
 			{error ? (
 				<p>{error}</p>
-			) : shows.length === 0 ? (
-				<p>No results</p>
 			) : (
 				<ol>
 					{shows.map((show) => (

@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactShallowRenderer from 'react-test-renderer/shallow';
+import { shallow } from 'enzyme';
+// import ReactShallowRenderer from 'react-test-renderer/shallow';
 import Footer from '../../components/Footer';
 
 it('should render Footer correctly', () => {
-	const renderer = new ReactShallowRenderer();
-	renderer.render(<Footer />);
-	expect(renderer.getRenderOutput()).toMatchSnapshot();
+	const wrapper = shallow(<Footer />);
+	expect(wrapper).toMatchSnapshot();
+	// const renderer = new ReactShallowRenderer();
+	// renderer.render(<Footer />);
+	// expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

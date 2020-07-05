@@ -15,6 +15,11 @@
 		"react-scripts": "3.4.1",
 		"react-test-renderer": "^16.13.1"
 	},
+	"jest": {
+		"snapshotSerializers": [
+			"enzyme-to-json/serializer"
+		]
+	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",

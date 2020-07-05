@@ -2,8 +2,8 @@ import React, { useReducer, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import DashboardPage from '../pages/dashboard';
-import SearchPage from '../pages/search';
-import NotFoundPage from '../pages/404.js';
+import SearchPage from '../pages/Search';
+import NotFoundPage from '../pages/NotFoundPage.js';
 import DashboardContext from '../context/dashboard';
 import subscriptionsReducer from '../reducers/subscriptions';
 

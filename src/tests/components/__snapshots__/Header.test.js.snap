@@ -1,3 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render Header correctly 1`] = `ShallowWrapper {}`;
+exports[`should render Header correctly 1`] = `
+<header>
+  <h2>
+    React TV App
+  </h2>
+  <ul>
+    <li>
+      <NavLink
+        activeClassName="is-active"
+        to="/dashboard"
+      >
+        Dashboard
+      </NavLink>
+    </li>
+    <li>
+      <NavLink
+        activeClassName="is-active"
+        to="/search"
+      >
+        Search
+      </NavLink>
+    </li>
+  </ul>
+</header>
+`;
