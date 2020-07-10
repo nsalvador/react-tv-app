@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
-import SearchContext from '../context/search';
-import DashboardContext from '../context/dashboard';
+import React from 'react';
+
+import { useDashboardContext } from '../context/dashboard';
+import { useSearchContext } from '../context/search';
 
 const SearchList = () => {
-	const { error, shows } = useContext(SearchContext);
-	const { dispatch } = useContext(DashboardContext);
+	const { error, shows } = useSearchContext();
+	const { dispatch } = useDashboardContext();
 
 	return (
 		<div>

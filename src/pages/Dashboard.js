@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Layout from '../components/Layout';
-import DashboardContext from '../context/dashboard';
+import { useDashboardContext } from '../context/dashboard';
 
 const DashboardPage = () => {
-	const { subscriptions } = useContext(DashboardContext);
+	const { subscriptions } = useDashboardContext();
 
 	return (
 		<div>

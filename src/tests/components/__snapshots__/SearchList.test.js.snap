@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component: <SearchList /> 1. Should render component when search is unsuccessful 1`] = `
+<div>
+  <p>
+    Not Found
+  </p>
+</div>
+`;
+
+exports[`Component: <SearchList /> 2. Should render component when search is successful 1`] = `
+<div>
+  <ol>
+    <li
+      key="281662"
+    >
+      Marvel's Daredevil
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+    </li>
+    <li
+      key="249135"
+    >
+      Daredevils of the Red Circle
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+    </li>
+    <li
+      key="113851"
+    >
+      Daredevils
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+    </li>
+    <li
+      key="274196"
+    >
+      American Daredevils
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+    </li>
+    <li
+      key="244691"
+    >
+      Super Dave: Daredevil For Hire
+      <button
+        onClick={[Function]}
+      >
+        +
+      </button>
+    </li>
+  </ol>
+</div>
+`;
