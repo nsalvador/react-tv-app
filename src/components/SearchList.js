@@ -1,27 +1,26 @@
 import React from 'react';
 
-import { useDashboardContext } from '../context/dashboard';
 import { useSearchContext } from '../context/search';
+import ShowList from '../components/ShowList';
+import Loading from '../components/Loading';
 
-const SearchList = () => {
-	const { error, shows } = useSearchContext();
-	const { dispatch } = useDashboardContext();
+const SearchList = ({ addShow }) => {
+	const { error, shows, isLoading } = useSearchContext();
 
 	return (
-		<div>
+		<div className="content-container">
 			{error ? (
 				<p>{error}</p>
 			) : (
-				<ol>
-					{shows.map((show) => (
-						<li key={show.id}>
-							{show.seriesName}
-							<button onClick={() => dispatch({ type: 'ADD_SHOW', show })}>
-								+
-							</button>
-						</li>
-					))}
-				</ol>
+				<div>
+					{isLoading ? (
+						<Loading />
+					) : (
+						<ShowList shows={shows} addShow={addShow} action="ADD_SHOW">
+							<span>ADD</span>
+						</ShowList>
+					)}
+				</div>
 			)}
 		</div>
 	);

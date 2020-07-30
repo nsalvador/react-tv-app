@@ -1,22 +1,23 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Header = () => (
-	<header>
-		<h2>React TV App</h2>
-		<ul>
-			<li>
-				<NavLink to="/dashboard" activeClassName="is-active">
-					Dashboard
-				</NavLink>
-			</li>
-			<li>
-				<NavLink to="/search" activeClassName="is-active">
-					Search
-				</NavLink>
-			</li>
-		</ul>
-	</header>
-);
+import { signOut } from '../firebase';
+
+const Header = () => {
+	return (
+		<header className="header">
+			<div className="content-container">
+				<div className="header__content">
+					<Link className="header__title" to="/dashboard">
+						<h1>React TV Search</h1>
+					</Link>
+					<button className="button button--link" onClick={signOut}>
+						Logout
+					</button>
+				</div>
+			</div>
+		</header>
+	);
+};
 
 export default Header;

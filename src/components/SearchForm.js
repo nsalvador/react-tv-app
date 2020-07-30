@@ -1,38 +1,50 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-import SearchContext from '../context/search';
+import { useSearchContext } from '../context/search';
 
 const SearchForm = () => {
 	const [show, SET_SHOW] = useState('');
-	const { dispatchSearch, dispatchError } = useContext(SearchContext);
+	const { shows, SET_SHOWS, SET_ERROR, SET_LOADING } = useSearchContext();
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-		dispatchError({ type: 'SET_ERROR', error: '' });
+		SET_LOADING(true);
+		SET_ERROR('');
 		try {
 			const response = await axios({
 				url: 'https://vue-tv-api.herokuapp.com/shows/search',
 				method: 'post',
 				data: { show },
 			});
-			dispatchSearch({ type: 'SET_SHOWS', shows: response.data });
+			SET_SHOWS(response.data);
+			SET_LOADING(false);
 		} catch (e) {
-			dispatchError({ type: 'SET_ERROR', error: e.response.data.message });
+			SET_ERROR(e.response.data.message);
 		} finally {
 			SET_SHOW('');
 		}
 	};
 
 	return (
-		<form onSubmit={onSubmitHandler}>
-			<input
-				placeholder="Start a Search"
-				onChange={(e) => SET_SHOW(e.target.value)}
-				value={show}
-			/>
-			<button disabled={show === ''}>Search</button>
-		</form>
+		<div className="page-header">
+			<div className="content-container">
+				<form onSubmit={onSubmitHandler}>
+					<input
+						className="text-input"
+						placeholder="Enter Show"
+						onChange={(e) => SET_SHOW(e.target.value)}
+						value={show}
+					/>
+					<div className="page-header__actions">
+						<button className="button" disabled={show === ''}>
+							Start Search
+						</button>
+						{shows.length !== 0 && <span>&nbsp;{shows.length} Results</span>}
+					</div>
+				</form>
+			</div>
+		</div>
 	);
 };
 

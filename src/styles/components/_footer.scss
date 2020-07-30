@@ -1,0 +1,15 @@
+.footer {
+	background: $dark-blue;
+	margin-top: $l-size;
+}
+
+.footer__content {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	padding: $s-size 0;
+	p {
+		color: white;
+		margin: 0;
+	}
+}
