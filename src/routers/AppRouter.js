@@ -14,7 +14,7 @@ import { useAuthContext } from '../context/auth';
 
 const AppRouter = () => {
 	const [subscriptions, dispatch] = useReducer(subscriptionsReducer, []);
-	const [loading, SET_LOADING] = useState(false);
+	const [isLoading, SET_LOADING] = useState(false);
 	const { user } = useAuthContext();
 
 	useEffect(() => {
@@ -39,7 +39,7 @@ const AppRouter = () => {
 	}, [user]);
 
 	return (
-		<DashboardContext.Provider value={{ subscriptions, dispatch, loading }}>
+		<DashboardContext.Provider value={{ subscriptions, dispatch, isLoading }}>
 			<BrowserRouter>
 				<Switch>
 					<PublicRoute path="/" component={LoginPage} exact={true} />

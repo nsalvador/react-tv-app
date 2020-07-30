@@ -22,9 +22,8 @@
 /src/serviceWorker.js
 /src/setupTests.js
 
-README.md
-
 # misc
+.README.md
 .DS_Store
 .env
 .env.local
