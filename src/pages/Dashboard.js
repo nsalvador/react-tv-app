@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import database from '../firebase';
+import { database } from '../firebase';
 import Layout from '../components/Layout';
 import Loading from '../components/Loading';
 import ShowList from '../components/ShowList';

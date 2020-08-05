@@ -1,45 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import database from '../firebase';
+import { database } from '../firebase';
 import Layout from '../components/Layout';
 import SearchForm from '../components/SearchForm';
 import SearchList from '../components/SearchList';
-import SearchContext from '../context/search';
+import SearchProvider from '../provider/search';
 import { useAuthContext } from '../context/auth';
 import { useDashboardContext } from '../context/dashboard';
 
 const SearchPage = ({ history }) => {
-	const [shows, SET_SHOWS] = useState([]);
-	const [error, SET_ERROR] = useState('');
-	const [isLoading, SET_LOADING] = useState(false);
-
 	const { subscriptions, dispatch } = useDashboardContext();
 	const { user } = useAuthContext();
 
-	const addShow = (show) => {
+	const addShow = async (show) => {
 		const { uid } = user;
-		const id = show.id;
+		const { id } = show;
 		if (!subscriptions.some((item) => item.id === id)) {
-			return database
-				.ref(`users/${uid}/shows`)
-				.child(`${id}`)
-				.set(show)
-				.then(() => {
-					dispatch({ type: 'ADD_SHOW', show });
-					history.push('/dashboard');
-				});
+			await database.ref(`users/${uid}/shows`).child(`${id}`).set(show);
+			dispatch({ type: 'ADD_SHOW', show });
+			history.push('/dashboard');
 		}
 	};
 
 	return (
 		<div>
 			<Layout>
-				<SearchContext.Provider
-					value={{ error, shows, isLoading, SET_SHOWS, SET_ERROR, SET_LOADING }}
-				>
+				<SearchProvider>
 					<SearchForm />
 					<SearchList addShow={addShow} />
-				</SearchContext.Provider>
+				</SearchProvider>
 			</Layout>
 		</div>
 	);

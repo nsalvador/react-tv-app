@@ -29,4 +29,6 @@ const signOut = () => {
 	firebase.auth().signOut();
 };
 
-export { signOut, onAuthStateChanged, signInWithPopup, database as default };
+const currentUser = firebase.auth().currentUser;
+
+export { currentUser, signOut, onAuthStateChanged, signInWithPopup, database };

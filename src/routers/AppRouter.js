@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import database from '../firebase';
+import { database } from '../firebase';
 import subscriptionsReducer from '../reducers/subscriptions';
 import DashboardContext from '../context/dashboard';
 import DashboardPage from '../pages/Dashboard';
@@ -18,11 +18,10 @@ const AppRouter = () => {
 	const { user } = useAuthContext();
 
 	useEffect(() => {
-		const { uid } = user;
-		if (uid) {
+		if (user) {
 			SET_LOADING(true);
 			database
-				.ref(`users/${uid}/shows`)
+				.ref(`users/${user.uid}/shows`)
 				.once(`value`)
 				.then((dataSnapshot) => {
 					const subscriptions = [];

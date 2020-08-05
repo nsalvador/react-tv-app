@@ -1,32 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import AppRouter from '../routers/AppRouter';
-import AuthContext from '../context/auth';
+import useAuth from '../components/Auth';
+import AuthProvider from '../provider/auth';
 import LoadingPage from '../pages/LoadingPage';
-import { onAuthStateChanged } from '../firebase';
 
 const App = () => {
-	const [user, SET_USER] = useState({ uid: null });
-	const [isLoading, SET_LOADING] = useState(false);
+	const { initializing } = useAuth();
 
-	useEffect(() => {
-		SET_LOADING(true);
-		onAuthStateChanged((user) => {
-			user ? SET_USER({ uid: user.uid }) : SET_USER({ uid: null });
-			SET_LOADING(false);
-		});
-	}, []);
+	if (initializing) {
+		return <LoadingPage />;
+	}
 
 	return (
-		<div>
-			{isLoading ? (
-				<LoadingPage />
-			) : (
-				<AuthContext.Provider value={{ user }}>
-					<AppRouter />
-				</AuthContext.Provider>
-			)}
-		</div>
+		<AuthProvider>
+			<AppRouter />
+		</AuthProvider>
 	);
 };
 

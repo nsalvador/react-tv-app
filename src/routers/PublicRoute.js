@@ -10,7 +10,7 @@ const PublicRoute = ({ component: Component, ...rest }) => {
 		<Route
 			{...rest}
 			component={(props) =>
-				!!user.uid ? <Redirect to="/dashboard" /> : <Component {...props} />
+				!!user ? <Redirect to="/dashboard" /> : <Component {...props} />
 			}
 		/>
 	);

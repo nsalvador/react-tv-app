@@ -9,7 +9,6 @@ import {
 	Dialog,
 	DialogActions,
 	DialogContent,
-	DialogContentText,
 	DialogTitle,
 	Grid,
 	Typography,
@@ -17,6 +16,9 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+	root: {
+		fontSize: '100%',
+	},
 	media: {
 		height: 0,
 		paddingTop: '147.05%',
@@ -80,12 +82,17 @@ const ShowList = ({ shows, addShow, removeShow, action, children }) => {
 					>
 						{modal.show && (
 							<div>
-								<DialogTitle>{modal.show.seriesName}</DialogTitle>
+								<DialogTitle>
+									<Typography variant="h4">{modal.show.seriesName}</Typography>
+								</DialogTitle>
 								<DialogContent>
-									<DialogContentText>{modal.show.overview}</DialogContentText>
+									<Typography className={classes.root}>
+										{modal.show.overview}
+									</Typography>
 								</DialogContent>
 								<DialogActions>
 									<Button
+										className={classes.root}
 										onClick={() =>
 											setModal({
 												isOpen: false,
