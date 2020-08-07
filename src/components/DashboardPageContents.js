@@ -3,22 +3,10 @@ import { Link } from 'react-router-dom';
 
 import Loading from '../components/Loading';
 import ShowList from '../components/ShowList';
-import { database } from '../firebase';
 import { useDashboardContext } from '../context/dashboard';
-import { useAuthContext } from '../context/auth';
 
 const DashboardPageContents = () => {
-	const { isLoading, subscriptions, dispatch } = useDashboardContext();
-	const { user } = useAuthContext();
-
-	const removeShow = (show) => {
-		const { id } = show;
-		const { uid } = user;
-		return database
-			.ref(`users/${uid}/shows/${id}`)
-			.remove()
-			.then(() => dispatch({ type: 'REMOVE_SHOW', id }));
-	};
+	const { isLoading, subscriptions } = useDashboardContext();
 
 	return (
 		<div className="content-container">
@@ -27,11 +15,7 @@ const DashboardPageContents = () => {
 			) : (
 				<div>
 					{subscriptions.length !== 0 ? (
-						<ShowList
-							shows={subscriptions}
-							removeShow={removeShow}
-							action="REMOVE_SHOW"
-						>
+						<ShowList shows={subscriptions} action="REMOVE_SHOW">
 							<span>REMOVE</span>
 						</ShowList>
 					) : (

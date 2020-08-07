@@ -15,6 +15,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useDashboardContext } from '../context/dashboard';
+
 const useStyles = makeStyles(() => ({
 	root: {
 		fontSize: '100%',
@@ -27,9 +29,11 @@ const useStyles = makeStyles(() => ({
 
 const noImageURL = 'https://via.placeholder.com/680x1000.png?text=No+Image';
 
-const ShowList = ({ shows, addShow, removeShow, action, children }) => {
+const ShowList = ({ shows, addShow, action, children }) => {
 	const classes = useStyles();
 	const [modal, setModal] = useState({ isOpen: false, show: null });
+
+	const { remove: removeShow } = useDashboardContext();
 
 	const onClickHandler = (show) => {
 		switch (action) {
@@ -83,7 +87,7 @@ const ShowList = ({ shows, addShow, removeShow, action, children }) => {
 						{modal.show && (
 							<div>
 								<DialogTitle>
-									<Typography variant="h4">{modal.show.seriesName}</Typography>
+									<Typography>{modal.show.seriesName}</Typography>
 								</DialogTitle>
 								<DialogContent>
 									<Typography className={classes.root}>
