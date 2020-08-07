@@ -4,6 +4,7 @@ import AppRouter from '../routers/AppRouter';
 import useAuth from '../functions/auth';
 import AuthProvider from '../provider/auth';
 import LoadingPage from '../pages/LoadingPage';
+import DashboardProvider from '../provider/dashboard';
 
 const App = () => {
 	const { initializing } = useAuth();
@@ -14,7 +15,9 @@ const App = () => {
 
 	return (
 		<AuthProvider>
-			<AppRouter />
+			<DashboardProvider>
+				<AppRouter />
+			</DashboardProvider>
 		</AuthProvider>
 	);
 };
