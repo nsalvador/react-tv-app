@@ -7,6 +7,7 @@ import Loading from '../components/Loading';
 import ShowList from '../components/ShowList';
 import { useDashboardContext } from '../context/dashboard';
 import { useAuthContext } from '../context/auth';
+import DashboardPageHeader from '../components/DashboardPageHeader';
 
 const DashboardPage = () => {
 	const { subscriptions, dispatch, isLoading } = useDashboardContext();
@@ -23,24 +24,7 @@ const DashboardPage = () => {
 
 	return (
 		<Layout>
-			<div className="page-header">
-				<div className="content-container">
-					<h1 className="page-header__title">
-						Dashboard
-						{subscriptions.length !== 0 &&
-							(subscriptions.length > 1 ? (
-								<span>: {subscriptions.length} subscriptions</span>
-							) : (
-								<span>: {subscriptions.length} subscription</span>
-							))}
-					</h1>
-					<div className="page-header__actions">
-						<Link className="button" to="/search">
-							Goto Search Page
-						</Link>
-					</div>
-				</div>
-			</div>
+			<DashboardPageHeader />
 			<div className="content-container">
 				{isLoading ? (
 					<Loading />

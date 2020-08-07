@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AppRouter from '../routers/AppRouter';
-import useAuth from '../components/Auth';
+import useAuth from '../functions/auth';
 import AuthProvider from '../provider/auth';
 import LoadingPage from '../pages/LoadingPage';
 

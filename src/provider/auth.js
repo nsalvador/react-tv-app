@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AuthContext from '../context/auth';
-import useAuth from '../components/Auth';
+import useAuth from '../functions/auth';
 
 const AuthProvider = (props) => {
 	const { user } = useAuth();
