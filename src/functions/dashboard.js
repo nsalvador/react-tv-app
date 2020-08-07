@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import { database } from '../firebase';
+import subscriptionsReducer from '../reducers/subscriptions';
 
 const useDashboard = (id) => {
+	const [subscriptions, dispatch] = useReducer(subscriptionsReducer, []);
+	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
-	const [loading, setLoading] = useState(true);
-	const [subscriptions, setSubscriptions] = useState([]);
 
 	useEffect(() => {
+		setLoading(true);
 		database
 			.ref(`users/${id}/shows`)
 			.once(`value`)
@@ -19,12 +21,12 @@ const useDashboard = (id) => {
 					});
 				});
 				setLoading(false);
-				setSubscriptions(subscriptions);
+				dispatch({ type: 'POPULATE_SUBSCRIPTIONS', subscriptions });
 			})
 			.catch((err) => setError(err));
 	}, [id]);
 
-	return { error, loading, subscriptions, setSubscriptions };
+	return { error, loading, subscriptions, dispatch };
 };
 
 export default useDashboard;
