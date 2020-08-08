@@ -1,16 +1,16 @@
 import React from 'react';
 
 import Layout from '../components/Layout';
-import SearchForm from '../components/SearchForm';
-import SearchList from '../components/SearchList';
+import SearchPageHeader from '../components/SearchPageHeader';
+import SearchPageContents from '../components/SearchPageContents';
 import SearchProvider from '../provider/search';
 
 const SearchPage = () => (
 	<div>
 		<Layout>
 			<SearchProvider>
-				<SearchForm />
-				<SearchList />
+				<SearchPageHeader />
+				<SearchPageContents />
 			</SearchProvider>
 		</Layout>
 	</div>

@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import DashboardPage from '../pages/Dashboard';
+import DashboardPage from '../pages/DashboardPage';
 import LoginPage from '../pages/LoginPage';
 import NotFoundPage from '../pages/NotFoundPage.js';
 import PrivateRoute from '../routers/PrivateRoute';
 import PublicRoute from '../routers/PublicRoute';
-import SearchPage from '../pages/Search';
+import SearchPage from '../pages/SearchPage';
 
 const AppRouter = () => (
 	<Router>

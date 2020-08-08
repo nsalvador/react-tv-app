@@ -8,23 +8,29 @@ import { useDashboardContext } from '../context/dashboard';
 const DashboardPageContents = () => {
 	const { isLoading, subscriptions } = useDashboardContext();
 
+	if (isLoading) {
+		return (
+			<div className="content-container">
+				<Loading />
+			</div>
+		);
+	}
+
+	if (subscriptions.length !== 0) {
+		return (
+			<div className="content-container">
+				<ShowList shows={subscriptions} action="REMOVE_SHOW">
+					<span>REMOVE</span>
+				</ShowList>
+			</div>
+		);
+	}
+
 	return (
 		<div className="content-container">
-			{isLoading ? (
-				<Loading />
-			) : (
-				<div>
-					{subscriptions.length !== 0 ? (
-						<ShowList shows={subscriptions} action="REMOVE_SHOW">
-							<span>REMOVE</span>
-						</ShowList>
-					) : (
-						<p>
-							No Subscriptions. Start a <Link to="/search">Search</Link>
-						</p>
-					)}
-				</div>
-			)}
+			<p>
+				No Subscriptions. Start a <Link to="/search">Search</Link>
+			</p>
 		</div>
 	);
 };

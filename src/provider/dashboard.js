@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { database } from '../firebase';
+import useDashboard from '../functions/dashboard';
 import DashboardContext from '../context/dashboard';
 import { useAuthContext } from '../context/auth';
-import useDashboard from '../functions/dashboard';
 
 const DashboardProvider = (props) => {
 	const { user } = useAuthContext();
