@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import DashboardPage from '../pages/Dashboard';
 import LoginPage from '../pages/LoginPage';
@@ -9,14 +9,14 @@ import PublicRoute from '../routers/PublicRoute';
 import SearchPage from '../pages/Search';
 
 const AppRouter = () => (
-	<BrowserRouter>
+	<Router>
 		<Switch>
 			<PublicRoute path="/" component={LoginPage} exact={true} />
-			<PrivateRoute path="/dashboard" component={DashboardPage} />
-			<PrivateRoute path="/search" component={SearchPage} />
+			<PrivateRoute path="/dashboard" component={DashboardPage} exact={true} />
+			<PrivateRoute path="/search" component={SearchPage} exact={true} />
 			<Route component={NotFoundPage} />
 		</Switch>
-	</BrowserRouter>
+	</Router>
 );
 
 export default AppRouter;

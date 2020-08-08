@@ -4,7 +4,7 @@ import { useSearchContext } from '../context/search';
 import ShowList from '../components/ShowList';
 import Loading from '../components/Loading';
 
-const SearchList = ({ addShow }) => {
+const SearchList = () => {
 	const { error, shows, isLoading } = useSearchContext();
 
 	return (
@@ -16,7 +16,7 @@ const SearchList = ({ addShow }) => {
 					{isLoading ? (
 						<Loading />
 					) : (
-						<ShowList shows={shows} addShow={addShow} action="ADD_SHOW">
+						<ShowList shows={shows} action="ADD_SHOW">
 							<span>ADD</span>
 						</ShowList>
 					)}

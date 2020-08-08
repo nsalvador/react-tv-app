@@ -3,12 +3,16 @@ import React, { useState } from 'react';
 import SearchContext from '../context/search';
 
 const SearchProvider = (props) => {
-	const [shows, SET_SHOWS] = useState([]);
-	const [error, SET_ERROR] = useState('');
-	const [isLoading, SET_LOADING] = useState(false);
-	const value = { shows, SET_SHOWS, error, SET_ERROR, isLoading, SET_LOADING };
+	const [shows, setShows] = useState([]);
+	const [error, setError] = useState('');
+	const [isLoading, setLoading] = useState(false);
 
-	return <SearchContext.Provider value={value} {...props} />;
+	return (
+		<SearchContext.Provider
+			value={{ shows, setShows, error, setError, isLoading, setLoading }}
+			{...props}
+		/>
+	);
 };
 
 export default SearchProvider;

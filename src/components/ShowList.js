@@ -16,6 +16,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useDashboardContext } from '../context/dashboard';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
 	root: {
@@ -29,16 +30,19 @@ const useStyles = makeStyles(() => ({
 
 const noImageURL = 'https://via.placeholder.com/680x1000.png?text=No+Image';
 
-const ShowList = ({ shows, addShow, action, children }) => {
+const ShowList = ({ shows, action, children }) => {
+	const history = useHistory();
 	const classes = useStyles();
 	const [modal, setModal] = useState({ isOpen: false, show: null });
 
-	const { remove: removeShow } = useDashboardContext();
+	const { remove: removeShow, add: addShow } = useDashboardContext();
 
 	const onClickHandler = (show) => {
 		switch (action) {
-			case 'ADD_SHOW':
+			case 'ADD_SHOW': {
+				history.push('/dashboard');
 				return addShow(show);
+			}
 			case 'REMOVE_SHOW':
 				return removeShow(show);
 			default:

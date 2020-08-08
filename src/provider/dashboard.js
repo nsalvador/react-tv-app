@@ -12,17 +12,29 @@ const DashboardProvider = (props) => {
 	);
 
 	const remove = (show) => {
-		const { id } = show;
 		const { uid } = user;
-		return database
+		const { id } = show;
+		database
 			.ref(`users/${uid}/shows/${id}`)
 			.remove()
 			.then(() => dispatch({ type: 'REMOVE_SHOW', id }));
 	};
 
+	const add = (show) => {
+		const { uid } = user;
+		const { id } = show;
+		if (!subscriptions.some((item) => item.id === id)) {
+			database
+				.ref(`users/${uid}/shows`)
+				.child(`${id}`)
+				.set(show)
+				.then(() => dispatch({ type: 'ADD_SHOW', show }));
+		}
+	};
+
 	return (
 		<DashboardContext.Provider
-			value={{ subscriptions, dispatch, isLoading, remove }}
+			value={{ subscriptions, dispatch, isLoading, remove, add }}
 			{...props}
 		/>
 	);

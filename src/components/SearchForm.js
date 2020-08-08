@@ -5,22 +5,22 @@ import { useSearchContext } from '../context/search';
 
 const SearchForm = () => {
 	const [show, SET_SHOW] = useState('');
-	const { shows, SET_SHOWS, SET_ERROR, SET_LOADING } = useSearchContext();
+	const { shows, setShows, setError, setLoading } = useSearchContext();
 
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
-		SET_LOADING(true);
-		SET_ERROR('');
+		setLoading(true);
+		setError('');
 		try {
 			const response = await axios({
 				url: 'https://vue-tv-api.herokuapp.com/shows/search',
 				method: 'post',
 				data: { show },
 			});
-			SET_SHOWS(response.data);
-			SET_LOADING(false);
+			setShows(response.data);
+			setLoading(false);
 		} catch (e) {
-			SET_ERROR(e.response.data.message);
+			setError(e.response.data.message);
 		} finally {
 			SET_SHOW('');
 		}
