@@ -3,12 +3,12 @@ import axios from 'axios';
 
 import { useSearchContext } from '../context/search';
 
-const SearchForm = () => {
-	const [show, SET_SHOW] = useState('');
+const SearchPageHeader = () => {
+	const [show, setShow] = useState('');
 	const { shows, setShows, setError, setLoading } = useSearchContext();
 
-	const onSubmitHandler = async (e) => {
-		e.preventDefault();
+	const onSubmitHandler = async (event) => {
+		event.preventDefault();
 		setLoading(true);
 		setError('');
 		try {
@@ -18,11 +18,11 @@ const SearchForm = () => {
 				data: { show },
 			});
 			setShows(response.data);
-			setLoading(false);
-		} catch (e) {
-			setError(e.response.data.message);
+		} catch (error) {
+			setError(error.response.data.message);
 		} finally {
-			SET_SHOW('');
+			setLoading(false);
+			setShow('');
 		}
 	};
 
@@ -33,8 +33,8 @@ const SearchForm = () => {
 					<input
 						className="text-input"
 						placeholder="Enter Show"
-						onChange={(e) => SET_SHOW(e.target.value)}
 						value={show}
+						onChange={(e) => setShow(e.target.value)}
 					/>
 					<div className="page-header__actions">
 						<button className="button" disabled={show === ''}>
@@ -48,4 +48,4 @@ const SearchForm = () => {
 	);
 };
 
-export default SearchForm;
+export default SearchPageHeader;

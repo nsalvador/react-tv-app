@@ -4,7 +4,7 @@ import { useSearchContext } from '../context/search';
 import ShowList from './ShowList';
 import Loading from './Loading';
 
-const SearchList = () => {
+const SearchPageContents = () => {
 	const { error, shows, isLoading } = useSearchContext();
 
 	if (error) {
@@ -32,4 +32,4 @@ const SearchList = () => {
 	);
 };
 
-export default SearchList;
+export default SearchPageContents;
